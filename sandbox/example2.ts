@@ -59,5 +59,4 @@ console.log(new Customer2('Kasia', 15, 'Agata').isAdult());
 let jan: Person = new Customer2('Hania', 4, 'Marcin');
 
 console.log(jan.welcome());
-console.log(customer2.welcome());
 
