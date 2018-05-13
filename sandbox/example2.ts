@@ -12,7 +12,7 @@ interface CanTalk {
     talk(): string;
 }
 
-class Person {
+class Person implements CanTalk {
     constructor(protected name: string, public age: number) {
     }
 
@@ -26,6 +26,10 @@ class Person {
         } else {
             return false;
         }
+    }
+
+    talk() {
+        return 'talk';
     }
 }
 
