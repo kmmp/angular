@@ -4,11 +4,15 @@ import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { HighliteDirective } from './highlite.directive';
+import { CustomerBrowserComponent } from './customer-browser/customer-browser.component';
+import { CustomerDetailsComponent } from './customer-details/customer-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HighliteDirective
+    HighliteDirective,
+    CustomerBrowserComponent,
+    CustomerDetailsComponent
   ],
   imports: [
     BrowserModule,
