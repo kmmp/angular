@@ -7,5 +7,6 @@ console.log(adam.welcome());
 
 // Observable.(5);
 
-console.log(persons);
+console.log(fromCustomer.persons);
+fromCustomer.welcome();
 
