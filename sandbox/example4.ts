@@ -7,3 +7,4 @@ console.log(adam);
 // Observable.(5);
 
 console.log(persons);
+
