@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter, OnDestroy, OnChanges, SimpleChanges } from '@angular/core';
 import { Customer, CustomerType } from '../model';
+import { CounterService } from '../counter.service';
+import { MessageService } from '../message.service';
 
 @Component({
   selector: 'app-customer-details',
@@ -19,10 +21,11 @@ export class CustomerDetailsComponent implements OnInit, OnDestroy, OnChanges {
 
   CustomerType = CustomerType;
 
-  constructor() { }
+  constructor(private counterService: CounterService, private messageService: MessageService) { }
 
   ngOnInit() {
     console.log('init');
+    this.counterService.increase();
     // this.counterHandler = setInterval(
     //   () => {
     //     this.counter++;
@@ -44,6 +47,7 @@ export class CustomerDetailsComponent implements OnInit, OnDestroy, OnChanges {
 
   changeColor() {
     this.nameColor = this.nameColor === 'blue' ? 'red' : 'blue';
+    this.messageService.success('Udało się zmienić kolor!');
   }
 
   left() {
