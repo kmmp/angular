@@ -15,8 +15,12 @@ import { CONFIG } from './model';
 import { ToastrModule} from 'ngx-toastr';
 import { MessageService } from './message.service';
 
+import { HttpClientModule } from '@angular/common/http';
+import { CustomerAddComponent } from './customer-add/customer-add.component';
+
 const config: Config = {
-  customerLimit: 10
+  customerLimit: 10,
+  apiUrl: 'http://localhost:13378'
 };
 
 @NgModule({
@@ -24,13 +28,15 @@ const config: Config = {
     AppComponent,
     HighliteDirective,
     CustomerBrowserComponent,
-    CustomerDetailsComponent
+    CustomerDetailsComponent,
+    CustomerAddComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ToastrModule.forRoot(),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpClientModule
   ],
   providers: [
     CustomerService,

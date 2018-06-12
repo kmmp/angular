@@ -3,6 +3,7 @@ import { Customer, CustomerType } from '../model';
 import { CustomerDetailsComponent } from '../customer-details/customer-details.component';
 import { CustomerService } from '../customer.service';
 import { CounterService } from '../counter.service';
+import { MessageService } from '../message.service';
 
 @Component({
   selector: 'app-customer-browser',
@@ -16,11 +17,10 @@ export class CustomerBrowserComponent implements OnInit {
   customers: Customer[];
   customer: Customer;
 
-  constructor(private customerService: CustomerService, private counterService: CounterService) { }
+  constructor(private customerService: CustomerService, private counterService: CounterService, private messageService: MessageService) { }
 
   ngOnInit() {
-    this.customers = this.customerService.getCustomers();
-    this.customer = null;
+    this.refresh();
     this.counterService.increase();
   }
 
@@ -35,5 +35,24 @@ export class CustomerBrowserComponent implements OnInit {
 
   onColorChange() {
     this.detailsComponent.changeColor();
+  }
+
+  deleteCustomer() {
+    this.customerService.deleteCustomer(this.customer).subscribe(
+      () => {
+        this.messageService.success('Pomyślnie usunięto klienta');
+        this.refresh();
+      },
+      error => {
+        console.log(error);
+        this.messageService.error('Błąd usuwania');
+    });
+  }
+
+  refresh() {
+    this.customerService.getCustomers().subscribe(response => {
+      this.customers = response;
+      this.customer = null;
+      });
   }
 }

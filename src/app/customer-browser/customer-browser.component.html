@@ -4,9 +4,15 @@
       <option [ngValue]="null">Wybierz klienta</option>
       <option *ngFor="let c of customers" [ngValue]="c">{{c.name}}</option>
     </select>
-    <div *ngIf="customer"><button class="btn btn-default" (click)="onColorChange()">Zmień kolor</button></div>
+    <div class="btn btn-group" *ngIf="customer">
+      <button class="btn btn-secondary" (click)="onColorChange()">Zmień kolor</button>
+      <button class="btn btn-secondary" (click)="deleteCustomer()">Usuń klienta</button>
+    </div>
   </div>
 </div>
 <div *ngIf="customer">
   <app-customer-details #details [customer]="customer" (shift)="onShift($event)"></app-customer-details>
+</div>
+<div>
+    <app-customer-add></app-customer-add>
 </div>
