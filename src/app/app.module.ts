@@ -15,8 +15,9 @@ import { CONFIG } from './model';
 import { ToastrModule} from 'ngx-toastr';
 import { MessageService } from './message.service';
 
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CustomerAddComponent } from './customer-add/customer-add.component';
+import { ErrorHandlingInterceptor } from './error-handling.interceptor';
 
 const config: Config = {
   customerLimit: 10,
@@ -42,7 +43,8 @@ const config: Config = {
     CustomerService,
     CounterService,
     {provide: CONFIG, useValue: config},
-    MessageService
+    MessageService,
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorHandlingInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]
 })
